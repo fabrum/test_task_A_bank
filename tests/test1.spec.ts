@@ -62,6 +62,7 @@ test.describe('tests', () => {
                 await expect(await common.getHeader()).not.toBe("Server Error (#500)")
             });
         });
+
         test.describe('tests корзана не пуста', () => {
             test.beforeEach(async () => {
                 await main.addNthProducts(1, true)
@@ -69,7 +70,7 @@ test.describe('tests', () => {
             });
 
             test('Тест-кейс 4. Переход в корзину с 9 разными товарами.', async () => {
-                let number= 5
+                let number= 8
                 let addedItem= await main.addNthNewProducts(number);
                 await expect(addedItem.done).toBeTruthy()
                 await page.waitForTimeout(1000);
@@ -97,9 +98,5 @@ test.describe('tests', () => {
                 await expect(await common.getHeader()).not.toBe("Server Error (#500)")
             });
         });
-
-
     });
 });
-
-
