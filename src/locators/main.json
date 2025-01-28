@@ -1,0 +1,30 @@
+{
+  "loggedUser": "id=dropdownUser",
+  "userName": "xpath=//div[@class = 'text-uppercase']",
+  "navigation": "xpath=.//nav[@aria-label='Page navigation']",
+  "basket": {
+    "basket": "id=basketContainer",
+    "basketBtn": "xpath=//a",
+    "basketShow": "xpath=//div[contains(@class, 'show')]",
+    "basketGo": "text = Перейти в корзину",
+    "basketClear": "css = [class~='actionClearBasket']",
+    "numberOnBasket": "css = [class~='basket-count-items']",
+    "basketPrice": "xpath=//*[@class ='basket_price']",
+    "item": {
+      "name": "xpath=//*[@class ='basket-item-title']",
+      "price": "xpath=//*[@class ='basket-item-price']",
+      "count": "xpath=//*[contains(@class, 'basket-item-count')]"
+    }
+  },
+  "noteItem": {
+    "items": "xpath=//div[contains(@class,'note-list')]",
+    "all": "xpath=//*[contains(@class,'note-item')]",
+    "discount":"xpath=//div[contains(@class,'hasDiscount')]",
+    "notDiscount":"xpath=//div[contains(@class,'note-item')and(not(contains(@class,'hasDiscount')))]",
+    "name":"xpath=//*[contains(@class,'product_name')]",
+    "price":"xpath=//span[contains(@class,'product_price')]",
+    "by": "text = Купить",
+    "stockNumber" : "xpath =//span[contains(@class,'product_count')]"
+  }
+}
+

@@ -1,0 +1,6 @@
+
+{
+  "name" : "id=loginform-username",
+  "pass" : "id=loginform-password",
+  "button" : "xpath=.//button[@name = 'login-button']"
+}

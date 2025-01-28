@@ -1,0 +1,23 @@
+{
+  "name": "test_task_a_bank",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "reporer": "allure serve allure-results",
+    "test": "playwright test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fabrum/test_task_A_bank.git"
+  },
+  "private": true,
+  "dependencies": {
+    "typescript": "^5.7.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.1",
+    "@types/node": "^22.10.7",
+    "allure-playwright": "^3.0.9"
+  }
+}
