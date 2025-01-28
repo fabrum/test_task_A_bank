@@ -10,6 +10,7 @@
     "basketClear": "css = [class~='actionClearBasket']",
     "numberOnBasket": "css = [class~='basket-count-items']",
     "basketPrice": "xpath=//*[@class ='basket_price']",
+    "dropdownMenu" :"xpath=//*[contains(@class, 'dropdown-menu')]",
     "item": {
       "name": "xpath=//*[@class ='basket-item-title']",
       "price": "xpath=//*[@class ='basket-item-price']",

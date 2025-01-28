@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "reporer": "allure serve allure-results",
-    "test": "playwright test"
+    "test": "playwright test",
+    "test_head": "playwright test --headed"
   },
   "repository": {
     "type": "git",

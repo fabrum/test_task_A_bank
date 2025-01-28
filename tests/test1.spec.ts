@@ -17,7 +17,7 @@ test.describe('tests', () => {
         main = new MainPage(page);
         await login.goto();
         await login.login("test");
-        await expect(await main.getUserName()).toBe("test")
+        expect(await main.getUserName()).toBe("test")
     });
 
     test.afterAll(async () => {
@@ -27,14 +27,12 @@ test.describe('tests', () => {
     test.describe('tests корзанв пуста', () => {
         test.beforeEach(async () => {
             await login.goto()
-            await page.waitForTimeout(1000);
             await main.basketBeEmpty()
-            await page.waitForTimeout(1000);
         });
 
         test('Тест-кейс 1. Переход в пустую корзину', async () => {
             await main.basketBtnClick();
-            await expect(await main.basketPopupIsShow()).toBeTruthy()
+            expect(await main.basketPopupIsShow()).toBeTruthy()
         });
 
         [
@@ -48,36 +46,32 @@ test.describe('tests', () => {
             test(`${name}`, async () => {
                 const count = param.count
                 const product = await main.addNthProducts(count, param.discount)
-                await page.waitForTimeout(1000);
                 await main.basketBtnClick()
-                await expect(await main.basketPopupIsShow()).toBeTruthy()
-                await expect(await main.countItemInBasket()).toBe(1)
-                await expect(await main.getBasketNumber()).toBe(count)
-                await expect(await main.getCountProductFirst()).toBe(count)
-                await expect(await main.getNameProductFirst()).toBe(product.name)
-                await expect(await main.getPriceProductFirst()).toBe(product.prise * count)
-                await expect(await main.getBasketAllPrice()).toBe(product.prise * count)
+                expect(await main.basketPopupIsShow()).toBeTruthy()
+                expect(await main.countItemInBasket()).toBe(1)
+                expect(await main.getBasketNumber()).toBe(count)
+                expect(await main.getCountProductFirst()).toBe(count)
+                expect(await main.getNameProductFirst()).toBe(product.name)
+                expect(await main.getPriceProductFirst()).toBe(product.prise * count)
+                expect(await main.getBasketAllPrice()).toBe(product.prise * count)
                 await main.basketOpenClick()
-                await page.waitForTimeout(1000);
-                await expect(await common.getHeader()).not.toBe("Server Error (#500)")
+                expect(await common.getHeader()).not.toBe("Server Error (#500)")
             });
         });
 
         test.describe('tests корзана не пуста', () => {
             test.beforeEach(async () => {
                 await main.addNthProducts(1, true)
-                await page.waitForTimeout(1000);
             });
 
             test('Тест-кейс 4. Переход в корзину с 9 разными товарами.', async () => {
                 let number= 8
                 let addedItem= await main.addNthNewProducts(number);
-                await expect(addedItem.done).toBeTruthy()
-                await page.waitForTimeout(1000);
+                expect(addedItem.done).toBeTruthy()
                 await main.basketBtnClick()
-                await expect(await main.basketPopupIsShow()).toBeTruthy()
-                await expect(await main.countItemInBasket()).toBe(number+1)
-                await expect(await main.getBasketNumber()).toBe(number+1)
+                expect(await main.basketPopupIsShow()).toBeTruthy()
+                expect(await main.countItemInBasket()).toBe(number+1)
+                expect(await main.getBasketNumber()).toBe(number+1)
                 let arrCountProduct =await main.getCountProductAll()
                 arrCountProduct.forEach(item => {
                     expect(item).toBe(1)
@@ -92,10 +86,9 @@ test.describe('tests', () => {
                     expect(arrPriceProduct[i]).toBe(addedItem.arrPrice[i])
                 }
                 let allPrice = arrPriceProduct.reduce((sum, a) => sum + a, 0)
-                await expect(await main.getBasketAllPrice()).toBe(allPrice)
+                expect(await main.getBasketAllPrice()).toBe(allPrice)
                 await main.basketOpenClick()
-                await page.waitForTimeout(1000);
-                await expect(await common.getHeader()).not.toBe("Server Error (#500)")
+                expect(await common.getHeader()).not.toBe("Server Error (#500)")
             });
         });
     });

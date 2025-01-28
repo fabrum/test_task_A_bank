@@ -17,12 +17,12 @@ export class LoginPage {
     }
 
     async goto():Promise<void> {
-        await this.page.goto('https://enotes.pointschool.ru/login');
+        await this.page.goto('/login');
     }
 
     async login(name: string): Promise<void>{
         await this.loginName.type(users[name].name);
-        await this.loginPass.type(users[name].pass);
+        await this.loginPass.type(process.env.TEST_PASS);
         await this.button.click({force :true});
     }
 

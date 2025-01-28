@@ -60,6 +60,7 @@ export class MainPage {
 
     async basketOpenClick(): Promise<void> {
         await this.basketOpen.click()
+        await this.page.waitForTimeout(1000);
     }
 
     async basketPopupIsShow(): Promise<boolean> {
@@ -75,14 +76,31 @@ export class MainPage {
     }
 
     async basketBeEmpty(): Promise<void> {
+        await this.page.waitForTimeout(1000);
         let number = await this.getBasketNumber()
         if (number > 0) {
             if (number == 9) {
-                await this.allProducts.nth(1).locator(loc.noteItem.by).click()
-                await this.page.waitForTimeout(1000);
+                const popup = await this.basket.locator(loc.basket.dropdownMenu)
+                await popup.evaluate((element) => {
+                    const popupClass=element.getAttribute('class')
+                    element.setAttribute('class',`${popupClass} show`)
+
+                });
+                await this.basketClearClick()
+                await popup.evaluate(element => {
+                    let popupClass=element.getAttribute('class')
+                    const lastIndex = popupClass.lastIndexOf(" ");
+                    popupClass = popupClass.substring(0, lastIndex)
+                    element.setAttribute('class',popupClass)
+                });
+
+                // обход ошибки средствами самого сайта
+                // await this.allProducts.nth(1).locator(loc.noteItem.by).click()
+                // await this.page.waitForTimeout(1000);
+            }else {
+                await this.basketBtnClick()
+                await this.basketClearClick()
             }
-            await this.basketBtnClick()
-            await this.basketClearClick()
             await this.page.waitForTimeout(1000);
             await expect(await this.basketNumber.textContent()).toBe("0")
         }
@@ -160,6 +178,7 @@ export class MainPage {
         }
         const name = await product.locator(loc.noteItem.name).textContent()
         const priseString = await product.locator(loc.noteItem.price).textContent()
+        await this.page.waitForTimeout(1000);
         return {name: name, prise: await this.getFirstNumber(priseString)}
     }
 

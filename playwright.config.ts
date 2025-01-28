@@ -9,7 +9,11 @@ export default defineConfig({
         {
             resultsDir: "allure-results",
         },]],
-       use: {
-        headless: false
+    use: {
+        headless: true,
+        screenshot: 'only-on-failure',
+        trace: 'retain-on-first-failure',
+        baseURL:"https://enotes.pointschool.ru"
+        //video: 'on-first-retry',
     }
 });
