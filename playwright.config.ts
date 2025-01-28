@@ -9,8 +9,7 @@ export default defineConfig({
         {
             resultsDir: "allure-results",
         },]],
-    tsconfig: './tsconfig.test.json',
-    use: {
+       use: {
         headless: false
     }
 });
